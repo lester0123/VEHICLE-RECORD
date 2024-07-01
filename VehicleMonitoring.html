@@ -20,20 +20,20 @@
                 </div>
                 <form id="form1" runat="server" class="my-5">
                     <div class="row">
-                        <div class="col-12 col-md-6 mb-3">
-                            <div class="form-floating mb-3">
+                        <div class="col-12 ">
+                            <div class="form-floating mb-3 w3-quarter">
                                 <input id="plateno" type="text" class="form-control" placeholder="Plate Number">
                                 <label for="plateno">Plate Number</label>
                             </div>
-                            <div class="form-floating mb-3">
+                            <div class="form-floating mb-3 w3-quarter">
                                 <input id="vehiclename" type="text" class="form-control" placeholder="Vehicle Name">
                                 <label for="vehiclename">Vehicle Name</label>
                             </div>
-                            <div class="form-floating mb-3">
+                            <div class="form-floating mb-3 w3-quarter">
                                 <input id="color" type="text" class="form-control" placeholder="Color">
                                 <label for="color">Color</label>
                             </div>
-                            <div class="form-floating mb-3">
+                            <div class="form-floating mb-3 w3-quarter">
                                 <input id="expireddate" type="date" class="form-control" placeholder="Expired Date">
                                 <label for="expireddate">Expired Date</label>
                             </div>
@@ -45,7 +45,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-md-8">
-                <h3 class="text-center">Saved Vehicles</h3>
+                <h3 class="text-center">Vehicles Records</h3>
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -205,7 +205,7 @@
             const plateNo = document.getElementById('plateno').value;
             const color = document.getElementById('color').value;
             const expiredDate = document.getElementById('expireddate').value;
-            
+
             if (!vehicleName) {
                 Swal.fire('Error', 'Vehicle Name cannot be empty', 'error');
                 return;
