@@ -76,6 +76,7 @@
         const db = getFirestore(app);
 
         const vehicleTableBody = document.getElementById('vehicle-table-body');
+        let currentEditingRow = null; // Track the currently edited row
 
         // Function to format date
         function formatDate(dateString) {
@@ -91,7 +92,7 @@
                 <td>${vehicle.plateNo}</td>
                 <td>${vehicle.vehicleName}</td>
                 <td>${vehicle.color}</td>
-                <td>${formatDate(vehicle.expiredDate)}</td>
+                <td data-value="${vehicle.expiredDate}">${formatDate(vehicle.expiredDate)}</td>
                 <td>
                     <button class="btn btn-warning btn-sm edit-btn">Edit</button>
                     <button class="btn btn-success btn-sm save-btn" style="display:none;">Save</button>
@@ -117,6 +118,10 @@
 
         // Function to enable editing of a vehicle row
         function editVehicle(row) {
+            if (currentEditingRow) {
+                // If another row is being edited, reset it
+                cancelEdit(currentEditingRow);
+            }
             const cells = row.querySelectorAll('td');
             for (let i = 0; i < cells.length - 1; i++) {
                 const input = document.createElement('input');
@@ -127,6 +132,7 @@
                 cells[i].appendChild(input);
             }
             toggleButtons(row, true);
+            currentEditingRow = row; // Set the currently edited row
         }
 
         // Function to save the edited vehicle
@@ -150,6 +156,8 @@
                         confirmButton: 'swal2-confirm'
                     }
                 });
+                resetRow(row, vehicle);
+                currentEditingRow = null; // Clear the currently edited row
             } catch (error) {
                 console.error('Error updating document: ', error);
                 Swal.fire({
@@ -161,7 +169,6 @@
                     }
                 });
             }
-            toggleButtons(row, false);
         }
 
         // Function to cancel the edit
@@ -173,11 +180,17 @@
                 color: row.querySelectorAll('input')[2].value,
                 expiredDate: row.querySelectorAll('input')[3].value,
             };
+            resetRow(row, vehicle);
+            currentEditingRow = null; // Clear the currently edited row
+        }
+
+        // Function to reset a row to its non-editable state
+        function resetRow(row, vehicle) {
             row.innerHTML = `
                 <td>${vehicle.plateNo}</td>
                 <td>${vehicle.vehicleName}</td>
                 <td>${vehicle.color}</td>
-                <td>${formatDate(vehicle.expiredDate)}</td>
+                <td data-value="${vehicle.expiredDate}">${formatDate(vehicle.expiredDate)}</td>
                 <td>
                     <button class="btn btn-warning btn-sm edit-btn">Edit</button>
                     <button class="btn btn-success btn-sm save-btn" style="display:none;">Save</button>
