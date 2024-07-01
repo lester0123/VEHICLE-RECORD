@@ -9,15 +9,99 @@
     <script type="module" src="FirebaseConfig.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <style>
+        .table-container {
+            max-height: 400px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .table-container table {
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        .table-container thead th {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            z-index: 1;
+        }
+    </style>
 </head>
 
 <body style="background-color: #EFEFEF">
     <div class="container" style="padding:2rem">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 myform" style="overflow-x: auto; overflow-y: auto; max-height: 100%; background-color: white; color: #FFC300; box-shadow: 2.3px 4.6px 4.6px hsl(0deg 0% 0% / 0.43); border-radius: 1rem; padding: 2rem; margin: 2.5rem">
-                <div style="text-align: center">
-                    <label style="font-weight: 500; font-size: 2rem">VEHICLE RECORD</label>
+                <style>
+                    .containerhead {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        border-bottom: 2px solid black;
+                        padding: 10px;
+                    }
+                
+                    .containerhead img {
+                        width: 20%;
+                    }
+                
+                    .containerhead label {
+                        font-weight: 500;
+                        font-size: 2rem;
+                        flex-grow: 1;
+                        text-align: center;
+                    }
+                
+                    /* Responsive Design */
+                    @media (max-width: 1200px) {
+                        .containerhead label {
+                            font-size: 1.8rem;
+                        }
+                
+                        .containerhead img {
+                            width: 18%;
+                        }
+                    }
+                
+                    @media (max-width: 992px) {
+                        .container label {
+                            font-size: 1.6rem;
+                        }
+                
+                        .containerhead img {
+                            width: 16%;
+                        }
+                    }
+                
+                    @media (max-width: 768px) {
+                        .containerhead label {
+                            font-size: 1.4rem;
+                        }
+                
+                        .containerhead img {
+                            width: 14%;
+                        }
+                    }
+                
+                    @media (max-width: 576px) {
+                        .containerhead label {
+                            font-size: 1.2rem;
+                        }
+                
+                        .containerhead img {
+                            width: 12%;
+                        }
+                    }
+                </style>
+                
+                <div class="containerhead">
+                    <label>VEHICLE FORM</label>
+                    <img src="logo.png" alt="">
                 </div>
+                
+                
                 <form id="form1" runat="server" class="my-5">
                     <div class="row">
                         <div class="col-12 ">
@@ -44,21 +128,23 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-12 col-md-8">
-                <h3 class="text-center">Vehicles Records</h3>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Plate Number</th>
-                            <th>Vehicle Name</th>
-                            <th>Color</th>
-                            <th>Expired Date</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="vehicle-table-body">
-                    </tbody>
-                </table>
+            <div class="col-12 col-md-8" style="box-shadow: 2.3px 4.6px 4.6px hsl(0deg 0% 0% / 0.43);border-radius: 1rem;background-color: white;">
+                <h3 class="text-center" style="font-weight: bold;">Vehicles Records</h3>
+                <div class="table-container">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Plate Number</th>
+                                <th>Vehicle Name</th>
+                                <th>Color</th>
+                                <th>Expired Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vehicle-table-body">
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
